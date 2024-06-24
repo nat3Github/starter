@@ -42,17 +42,36 @@ map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle windo
 
 map("t", "<ESC>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 -- github
-function PushToGithub()
+
+-- function PushToGithub()
+--   local date_time = os.date "%Y-%m-%d %H:%M:%S"
+--   local text = "autocommit date: " .. date_time
+--   vim.cmd "wa"
+--   local add = "git add * && "
+--   local comm = "git commit -m " .. '"' .. text .. '" && '
+--   local push = "git push\n\r"
+--   --vim.fn.chansend(vim.b.terminal_job_id, add .. comm .. push)
+--   -- there is "sp" = split "vsp" = vertical split and "float"
+--   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+--   vim.api.nvim_feedkeys(add .. comm .. push, "t", false)
+-- end
+--
+-- map("n", "<leader>gp", ":lua PushToGithub()<CR>", { desc = "push to github", noremap = true, silent = true })
+
+function PushToGithub3()
   local date_time = os.date "%Y-%m-%d %H:%M:%S"
   local text = "autocommit date: " .. date_time
-  vim.cmd "wa"
   local add = "git add * && "
   local comm = "git commit -m " .. '"' .. text .. '" && '
   local push = "git push\n\r"
-  --vim.fn.chansend(vim.b.terminal_job_id, add .. comm .. push)
-  -- there is "sp" = split "vsp" = vertical split and "float"
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
   vim.api.nvim_feedkeys(add .. comm .. push, "t", false)
 end
+function PushToGithub2()
+  local date_time = os.date "%Y-%m-%d %H:%M:%S"
+  local text = "autocommit date: " .. date_time
+  vim.cmd "wa"
+  vim.cmd ":lua PushToGithub3()"
+end
 
-map("n", "<leader>gp", ":lua PushToGithub()<CR>", { desc = "push to github", noremap = true, silent = true })
+map("n", "<leader>gp", PushToGithub2, { desc = "push to github", noremap = true, silent = true })
