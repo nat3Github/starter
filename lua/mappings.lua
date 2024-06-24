@@ -39,16 +39,19 @@ map("i", "<A-o>", "<ESC>$a;<ESC>", { desc = "Colon newline", noremap = true, sil
 --autosave
 map("n", "<lfader>as", ":ASToggle<CR>", { desc = "Auto save toggle", noremap = true, silent = true })
 
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+
+map("t", "<ESC>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 -- github
 function PushToGithub()
   local date_time = os.date "%Y-%m-%d %H:%M:%S"
   local text = "autocommit date: " .. date_time
   vim.cmd "wa"
-  vim.cmd "split | terminal"
-  vim.fn.chansend(vim.b.terminal_job_id, "git add * &&\n")
-  local comm = " git commit -m " .. '"' .. text .. '" &&\n'
-  vim.fn.chansend(vim.b.terminal_job_id, comm)
-  vim.fn.chansend(vim.b.terminal_job_id, " git push\n")
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+  local add = "git add * && "
+  local comm = "git commit -m " .. '"' .. text .. '" && '
+  local push = "git push"
+  vim.fn.chansend(vim.b.terminal_job_id, add .. comm .. push)
 end
 
-map("n", "<leader>gp", ":lua PushToGithub()<CR><A-h>", { desc = "push to github", noremap = true })
+map("n", "<leader>gp", ":lua PushToGithub()<CR>", { desc = "push to github", noremap = false, silent = true })
