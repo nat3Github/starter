@@ -38,3 +38,17 @@ map("i", "<A-o>", "<ESC>$a;<ESC>", { desc = "Colon newline", noremap = true, sil
 
 --autosave
 map("n", "<lfader>as", ":ASToggle<CR>", { desc = "Auto save toggle", noremap = true, silent = true })
+
+-- github
+function PushToGithub()
+  local date_time = os.date "%Y-%m-%d %H:%M:%S"
+  local text = "autocommit date: " .. date_time
+  vim.cmd "wa"
+  vim.cmd "split | terminal"
+  vim.fn.chansend(vim.b.terminal_job_id, "git add * &&\n")
+  local comm = " git commit -m " .. '"' .. text .. '" &&\n'
+  vim.fn.chansend(vim.b.terminal_job_id, comm)
+  vim.fn.chansend(vim.b.terminal_job_id, " git push\n")
+end
+
+map("n", "<leader>gp", ":lua PushToGithub()<CR><A-h>", { desc = "push to github", noremap = true })
