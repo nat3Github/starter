@@ -55,6 +55,7 @@ function PushToGithub()
   vim.api.nvim_feedkeys(add .. comm .. push, "t", false)
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end
+
 function ToggleVTerm()
   -- there is "sp" = split "vsp" = vertical split and "float"
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
@@ -64,5 +65,5 @@ map(
   "n",
   "<leader>gp",
   ":lua PushToGithub()<CR><ESC>:lua ToggleVTerm()<CR>",
-  { desc = "push to github", noremap = false, silent = true }
+  { desc = "push to github", noremap = true, silent = true }
 )
