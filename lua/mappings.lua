@@ -47,12 +47,22 @@ function PushToGithub()
   local date_time = os.date "%Y-%m-%d %H:%M:%S"
   local text = "autocommit date: " .. date_time
   vim.cmd "wa"
-  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
   local add = "git add * && "
   local comm = "git commit -m " .. '"' .. text .. '" && '
   local push = "git push\n\r"
   --vim.fn.chansend(vim.b.terminal_job_id, add .. comm .. push)
+  ToggleVTerm()
   vim.api.nvim_feedkeys(add .. comm .. push, "t", false)
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+end
+function ToggleVTerm()
+  -- there is "sp" = split "vsp" = vertical split and "float"
+  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end
 
-map("n", "<leader>gp", ":lua PushToGithub()<CR>", { desc = "push to github", noremap = false, silent = true })
+map(
+  "n",
+  "<leader>gp",
+  ":lua PushToGithub()<CR><ESC>:lua ToggleVTerm()<CR>",
+  { desc = "push to github", noremap = false, silent = true }
+)
