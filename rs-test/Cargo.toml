@@ -1,0 +1,19 @@
+[package]
+name = "rs-example"
+version = "0.0.0"
+edition = "2021"
+description = "ffi bindings to signalsmith strectch lib"
+license = "MIT"
+#repository = "https://github.com/BillyDM/egui-baseview"
+#documentation = "https://docs.rs/egui-baseview"
+keywords = []
+categories = []
+#readme = "README.md"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[workspace]
+
+[dependencies]
+rand = "0.7"
+
+[build-dependencies]

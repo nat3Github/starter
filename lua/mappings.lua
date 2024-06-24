@@ -10,7 +10,7 @@ map("i", "jk", "<ESC>")
 -- save with autosave plugin
 map("n", "<leader>s", ":wa<CR>", { desc = "save all", noremap = true, silent = true })
 
-map("n", "<leader>qa", ":wa<CR>:qa<CR>", { desc = "quit all", noremap = true, silent = true })
+map("n", "<leader>qq", ":wa<CR>:qa<CR>", { desc = "quit all", noremap = true, silent = true })
 
 -- Leader bookmarks
 map("n", "<leader>1", "`1", { desc = "Jump to Mark 1", noremap = true, silent = true })
