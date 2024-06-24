@@ -50,11 +50,25 @@ return {
     },
   },
 
+  -- {
+  --   "rust-lang/rust.vim",
+  --   ft = "rust",
+  --   init = function()
+  --     --  vim.g.rustfmt_autosave = 1
+  --   end,
+  -- },
   {
-    "rust-lang/rust.vim",
+    "simrat39/rust-tools.nvim",
     ft = "rust",
-    init = function()
-      --  vim.g.rustfmt_autosave = 1
+    dependencies = "neovim/nvim-lspconfig",
+    opts = function()
+      return require "configs.rustconf"
     end,
+    config = function(_, opts)
+      require("rust-tools").setup(opts)
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap",
   },
 }
