@@ -50,7 +50,7 @@ function PushToGithub()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
   local add = "git add * && "
   local comm = "git commit -m " .. '"' .. text .. '" && '
-  local push = "git push"
+  local push = "git push\n"
   vim.fn.chansend(vim.b.terminal_job_id, add .. comm .. push)
 end
 
