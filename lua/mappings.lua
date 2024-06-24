@@ -67,6 +67,7 @@ function PushToGithub3()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
   vim.api.nvim_feedkeys(add .. comm .. push, "t", false)
 end
+
 function PushToGithub2()
   local date_time = os.date "%Y-%m-%d %H:%M:%S"
   local text = "autocommit date: " .. date_time
