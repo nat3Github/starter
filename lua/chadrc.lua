@@ -1,5 +1,5 @@
 -- This file  needs to have same structure as nvconfig.lua
--- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
+-- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
 
 ---@type ChadrcConfig
 local M = {}
@@ -19,11 +19,12 @@ M.ui = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },
   -- },
-  term = {
-    float = {
-      width = 0.3,
-      height = 0.3,
-    },
+}
+
+M.term = {
+  float = {
+    width = 0.9,
+    height = 0.9,
   },
 }
 return M
